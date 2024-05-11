@@ -1,0 +1,29 @@
+.marquee-text {
+    animation: marquee-animation-large 25s linear 5ms infinite;
+}
+
+@media (max-width: 640px) {
+    .marquee-text {
+        animation: marquee-animation-mobile 15s linear infinite;
+    }
+}
+
+@keyframes marquee-animation-large {
+    from {
+        transform: translateX(90%);
+    }
+
+    to {
+        transform: translateX(-90%);
+    }
+}
+
+@keyframes marquee-animation-mobile {
+    from {
+        transform: translateX(170%);
+    }
+
+    to {
+        transform: translateX(-170%);
+    }
+}
