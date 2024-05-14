@@ -12,7 +12,10 @@ import LineBox from "./linebox/LineBox";
 import BallotCard from "./ballot/Card";
 import ResultCard from "./result/Card";
 import ResultHeader from "./result/Heading";
+import DashboardTopbar from "./dashboard/Topbar";
+import DashboardSidebar from "./dashboard/Sidebar";
+import DashboardCard from "./dashboard/Card";
 
 export{
-    Navbar, Footer, Topbar, Button, ComplaintBox, PersonalityCard, GuidesCard, InputBox, SelectBox, AdminNav, LineBox, BallotCard, ResultCard, ResultHeader
+    Navbar, Footer, Topbar, Button, ComplaintBox, PersonalityCard, GuidesCard, InputBox, SelectBox, AdminNav, LineBox, BallotCard, ResultCard, ResultHeader, DashboardCard, DashboardTopbar, DashboardSidebar
 }

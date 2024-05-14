@@ -4,7 +4,7 @@ import { InputBox } from '../../components';
 import { MdOutlineHowToVote } from "react-icons/md";
 import { BGCOLOR, COLORS } from '../../theme/theme';
 
-const Signin = () => {
+const Signin = ({ onSignIn }) => {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -24,6 +24,7 @@ const Signin = () => {
 
             if (response.ok) {
                 console.log("Admin Login successfully");
+                onSignIn(true)
                 navigate("/admin/dashboard");
             } else {
                 console.error("Failed to login admin");

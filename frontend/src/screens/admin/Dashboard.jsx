@@ -1,18 +1,86 @@
 import { Link, Outlet } from "react-router-dom";
+import { DashboardCard, DashboardSidebar, DashboardTopbar } from "../../components";
+import { useEffect, useState } from "react";
+import { BsMenuUp } from "react-icons/bs";
+import { FaStamp, FaVoteYea } from "react-icons/fa";
 
 const Dashboard = () => {
+
+  const [totalVotes, setTotalVotes] = useState(0);
+  const [totalCandidates, setTotalCandidates] = useState(0);
+  const [totalVoters, setTotalVoters] = useState(0);
+
+  useEffect(() => {
+    const fetchTotalVotes = async () => {
+      try {
+        const response = await fetch(`/api/votes`);
+        if (response.ok) {
+          const responseData = await response.json();
+          setTotalVotes(responseData.totalVotesCasted);
+        } else {
+          console.error("Failed to fetch total votes casted");
+        }
+      } catch (error) {
+        console.error(error);
+        toast.error("An error occurred while fetching votes.");
+      }
+    };
     
+    const fetchTotalVoters = async () => {
+      try {
+        const response = await fetch(`/api/voters`);
+        if (response.ok) {
+          const responseData = await response.json();
+          setTotalVoters(responseData.totalVoters);
+        } else {
+          console.error("Failed to fetch total voters");
+        }
+      } catch (error) {
+        console.error(error);
+        toast.error("An error occurred while fetching voters.");
+      }
+    };
+
+    const fetchTotalCandidates = async () => {
+      try {
+        const response = await fetch(`/api/candidates`);
+        if (response.ok) {
+          const responseData = await response.json();
+          setTotalCandidates(responseData.totalCandidates);
+        } else {
+          console.error("Failed to fetch total candidates");
+        }
+      } catch (error) {
+        console.error(error);
+        toast.error("An error occurred while fetching candidates.");
+      }
+    };
+
+    fetchTotalVotes();
+    fetchTotalVoters();
+    fetchTotalCandidates();
+  }, []);
+  
+
   return (
-    <div className="my-14 lg:my-16 m-auto flex flex-col justify-center items-center">
-      <h1 className="my-3 lg:my-5 font-bold text-2xl lg:text-5xl">Welcome Admin Dashboard</h1>  
-     <div className={`grid grid-cols-2 text-sm lg:text-lg gap-2 text-center lg:grid-cols-4`}>
-     <Link to="/admin/candidate" className="py-2 px-4 bg-red-500 text-white rounded-lg font-bold">Add New Candidate</Link>
-     <Link to="/admin/allcandidates" className="py-2 px-4 bg-red-500 text-white rounded-lg font-bold">See All Candidates</Link>
-     <Link to="/admin/voter" className="py-2 px-4 bg-red-500 text-white rounded-lg font-bold">Add New Voter</Link>
-     <Link to="/admin/allvoters" className="py-2 px-4 bg-red-500 text-white rounded-lg font-bold">See All Voters</Link>
-     </div>
-     <Outlet />
-  </div>
+    <div className="">
+      <div className="w-full h-18">
+        <DashboardTopbar />
+      </div>
+
+      <div className="flex gap-3">
+        <DashboardSidebar />
+        <div className="flex flex-col lg:flex-row gap-3 pr-6 pt-4 lg:pr-0 lg:p-10">
+          <DashboardCard seats={totalCandidates} heading={"No of Candidates"} icon={<BsMenuUp className="text-5xl lg:text-8xl" />}/>
+          <DashboardCard seats={totalVoters} heading={"No of Voters"} icon={<FaStamp className="text-5xl lg:text-8xl" />}/>
+          <DashboardCard seats={totalVotes} heading={"Vote Casted"} icon={<FaVoteYea className="text-5xl lg:text-8xl" />}/>
+        </div>
+      </div>
+
+      <div>
+      </div>
+
+    </div>
   )
 }
 
