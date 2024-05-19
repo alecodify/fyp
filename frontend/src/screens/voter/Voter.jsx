@@ -13,6 +13,7 @@ const Voter = () => {
   const [currentAddress, setCurrentAddress] = useState("")
   const [permanentAddress, setPermanentAddress] = useState("")
   const [identityNumber, setIdentityNumber] = useState("")
+  const [email, setEmail] = useState("")
   const [nationalHalkaNo, setNationalHalkaNo] = useState("")
   const [provinceHalkaNo, setProvinceHalkaNo] = useState("")
   const [dateOfBirth, setDateOfBirth] = useState("")
@@ -43,7 +44,7 @@ const Voter = () => {
   }
 
   const handleButton = async () => {
-    if (!userName || !fatherName || !province || !currentAddress || !permanentAddress || !nationalHalkaNo || !provinceHalkaNo || !dateOfBirth || !dateOfIssue || !identityNumber || !dateOfExpiry || !userImage) {
+    if (!userName || !fatherName || !province || !currentAddress || !email || !permanentAddress || !nationalHalkaNo || !provinceHalkaNo || !dateOfBirth || !dateOfIssue || !identityNumber || !dateOfExpiry || !userImage) {
       toast.error("Please fill in all fields");
       return;
     }
@@ -55,6 +56,7 @@ const Voter = () => {
       currentAddress: currentAddress,
       permanentAddress: permanentAddress,
       identityNumber: identityNumber,
+      email: email,
       nationalHalkaNo: nationalHalkaNo,
       provinceHalkaNo: provinceHalkaNo,
       dateOfBirth: dateOfBirth,
@@ -82,6 +84,7 @@ const Voter = () => {
         setFatherName("");
         setGender("");
         setIdentityNumber("");
+        setEmail("")
         setProvince("");
         setNationalHalkaNo("");
         setCurrentAddress("");
@@ -93,6 +96,7 @@ const Voter = () => {
         setUserImage(null)
 
       } else {
+        toast.error("You are Not an Admin only Admin can add data");
         console.error("Failed to add the Voter");
       }
     } catch (error) {
@@ -106,7 +110,7 @@ const Voter = () => {
       <AdminNav />
 
       <div className="flex items-center justify-center">
-        <div className="bg-white flex flex-col justify-center items-center p-8">
+        <div className="bg-white flex flex-col justify-center items-center p-8 pt-0">
           <div className="mb-4 text-center">
             <div className="flex flex-col gap-2">
               <div className="container flex justify-center mx-auto my-4">
@@ -139,6 +143,7 @@ const Voter = () => {
               <InputBox name={"fatherName"} required={true} label={"Father Name"} type={"text"} onChange={(e) => setFatherName(e.target.value)} />
               <InputBox name={"gender"} required={true} label={"Gender"} type={"text"} onChange={(e) => setGender(e.target.value)} />
               <InputBox name={"cnic"} required={true} label={"CNIC No"} type={"text"} onChange={(e) => setIdentityNumber(e.target.value)} />
+              <InputBox name={"email"} required={true} label={"Email"} type={"text"} onChange={(e) => setEmail(e.target.value)} />
               <SelectBox name={"province"} required={true} label={"Province"} options={provinces} onChange={(e) => setProvince(e.target.value)} />
               <SelectBox name={"nationalarea"} required={true} label={"National Halka No"} options={nationalhalkasForProvince} onChange={(e) => setNationalHalkaNo(e.target.value)} />
               <SelectBox name={"currentarea"} required={true} label={"Current Area"} options={citiesForProvince} onChange={(e) => setCurrentAddress(e.target.value)} />

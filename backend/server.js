@@ -7,6 +7,7 @@ const candidateRouter = require('./routes/candidate');
 const voterRouter = require('./routes/voter');
 const voteRouter = require('./routes/vote');
 const resultRouter = require('./routes/result');
+const verifyRouter = require('./routes/verify');
 const app = express()
 const port = 8000
 
@@ -25,6 +26,7 @@ app.use('/api/candidates', candidateRouter);
 app.use('/api/voters', voterRouter);
 app.use('/api/votes', voteRouter);
 app.use('/api/results', resultRouter);
+app.use('/api/code', verifyRouter);
 
 app.get('/', (req, res) => res.send('Hello World!'))
 app.listen(process.env.PORT || port, () => console.log(`app listening on port ${process.env.PORT}!`))

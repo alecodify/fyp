@@ -99,7 +99,7 @@ const SeeVoter = () => {
             <AdminNav />
 
             <div>
-                <div className='flex  justify-end items-center mt-4 mr-4'>
+                <div className='flex  justify-end items-center mt-4 lg:mt-2 mr-4'>
                     <InputBox name={"search"} type={"text"} value={searchValue} onChange={(e) => setSearchValue(e.target.value)} placeholder={"Search by CNIC"} />
                     <CiSearch onClick={handleSearchButton} size={36} color="black" className='cursor-pointer absolute p-1 mr-2 bg-gray-200 mt-1 rounded-lg' />
                 </div>
@@ -107,7 +107,7 @@ const SeeVoter = () => {
 
 
             <div className="w-full h-full flex justify-center items-center">
-                <div className='mx-2 mt-10 lg:mt-0'>
+                <div className='mx-2 mt-10 lg:mt-[-50px]'>
 
                     <div className="mx-4">
                         <div className="flex justify-center">
@@ -128,6 +128,7 @@ const SeeVoter = () => {
                             <InputBox name={"fatherName"} type={"text"} label={"Father Name"} value={voterData.fatherName} onChange={handleChange} placeholder={"Enter fathername"} />
                             <InputBox name={"gender"} type={"text"} label={"Gender"} value={voterData.gender} onChange={handleChange} placeholder={"Enter gender"} />
                             <InputBox name={"identityNumber"} type={"text"} label={"Identity Number"} value={voterData.identityNumber} style={'border-gray-400'} onChange={""} disabled={true} />
+                            <InputBox name={"userEmail"} type={"text"} label={"Email"} placeholder={"Enter email"} value={voterData.email} onChange={handleChange} />
                             <InputBox name={"province"} type={"text"} label={"Province"} value={voterData.province} onChange={handleChange} placeholder={"Enter province"} />
                             <InputBox name={"nationalHalkaNo"} type={"text"} label={"National HalkaNo"} value={voterData.nationalHalkaNo} onChange={handleChange} placeholder={"Enter national halkaNo"} />
                             <InputBox name={"provinceHalkaNo"} type={"text"} label={"Province HalkaNo"} value={voterData.provinceHalkaNo} onChange={handleChange} placeholder={"Enter province halkaNo"} />

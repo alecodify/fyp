@@ -8,6 +8,7 @@ const voterSchema = new mongoose.Schema({
   currentAddress: {type: String, require: true},
   permanentAddress: {type: String, require: true},
   identityNumber: {type: String, require: true},
+  email: {type: String, require: true, unique: true},
   nationalHalkaNo: {type: String, require: true},
   provinceHalkaNo: {type: String, require: true},
   dateOfBirth: {type: String, require: true},

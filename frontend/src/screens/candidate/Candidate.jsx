@@ -82,6 +82,7 @@ const Candidate = () => {
                 setPartyName("");
                 setIdentityNumber("");
             } else {
+                toast.error("You are Not an Admin only Admin can add data");
                 console.error("Failed to add the candidate");
             }
         } catch (error) {

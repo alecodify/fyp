@@ -32,7 +32,9 @@ module.exports = {
         try {
             const candidates = await Candidate.find({}, { provinceName: 1, _id: 1, image: 1, name: 1, identityNumber: 1,  partyName: 1, symbol: 1, symbolText: 1, halkaNo: 1, seat: 1, candidateID: 1 })
 
-            res.status(200).json({ candidates })
+            const totalCandidates = candidates.length;
+
+            res.status(200).json({ candidates , totalCandidates})
         } catch (error) {
             return next(error)
         }
